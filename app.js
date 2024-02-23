@@ -8,7 +8,7 @@ const app = express();
 
 const connectDB = require("./db/connect");
 
-// const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 const notFound = require("./middleware/not-found");
 const errorHandler = require("./middleware/error-handler");
@@ -17,11 +17,7 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("tiny"));
 
-// app.use("/api/v1/user", userRoutes);
-app.get("/", (req, res, next) => {
-  console.log("hey");
-  res.send("hey");
-});
+app.use("/api/v1/auth", authRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
