@@ -9,6 +9,7 @@ const app = express();
 const connectDB = require("./db/connect");
 
 const authRoutes = require("./routes/authRoutes");
+const movieRoutes = require("./routes/movieRoutes");
 
 const notFound = require("./middleware/not-found");
 const errorHandler = require("./middleware/error-handler");
@@ -18,6 +19,7 @@ app.use(cors());
 app.use(morgan("tiny"));
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/movie", movieRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
