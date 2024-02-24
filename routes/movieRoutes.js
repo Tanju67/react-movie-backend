@@ -6,6 +6,10 @@ const {
   deleteMovie,
 } = require("../controllers/movie-controllers");
 
+const checkAuth = require("../middleware/auth");
+
+router.use(checkAuth);
+
 router.post("/", createMovie);
 
 router.get("/", getUserMovies);

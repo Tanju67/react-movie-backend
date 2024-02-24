@@ -16,6 +16,10 @@ const MovieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userRating: {
+    type: String,
+    required: true,
+  },
   createdBy: {
     type: mongoose.Types.ObjectId,
     required: true,

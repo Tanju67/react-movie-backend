@@ -6,9 +6,7 @@ const checkAuth = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    throw new UnauthenticatedError(
-      "Please provide a valid username and password"
-    );
+    throw new UnauthenticatedError("Unauthentication error");
   }
 
   const token = authHeader.split(" ")[1];
@@ -19,9 +17,7 @@ const checkAuth = async (req, res, next) => {
     req.userData = { userId: decoded.userId, username: decoded.name };
     next();
   } catch (error) {
-    throw new UnauthenticatedError(
-      "Please provide a valid username and password"
-    );
+    throw new UnauthenticatedError("Unauthentication error");
   }
 };
 
