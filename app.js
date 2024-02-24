@@ -10,6 +10,7 @@ const connectDB = require("./db/connect");
 
 const authRoutes = require("./routes/authRoutes");
 const movieRoutes = require("./routes/movieRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
 
 const notFound = require("./middleware/not-found");
 const errorHandler = require("./middleware/error-handler");
@@ -20,6 +21,7 @@ app.use(morgan("tiny"));
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/movie", movieRoutes);
+app.use("/api/v1/review", reviewRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
