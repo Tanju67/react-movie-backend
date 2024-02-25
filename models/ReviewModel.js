@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const ReviewSchema = new mongoose.Schema(
   {
-    title: {
+    Title: {
       type: String,
       required: true,
     },
-    review: {
+    Review: {
       type: String,
       required: true,
     },
@@ -13,11 +13,11 @@ const ReviewSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    poster: {
+    Poster: {
       type: String,
       required: true,
     },
-    userRating: {
+    UserRating: {
       type: String,
       required: true,
     },

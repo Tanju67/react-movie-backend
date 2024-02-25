@@ -32,6 +32,7 @@ const login = async (req, res) => {
 
   res.status(StatusCodes.OK).json({
     user: {
+      id: user._id,
       email: user.email,
       name: user.name,
       token,
@@ -39,4 +40,9 @@ const login = async (req, res) => {
   });
 };
 
-module.exports = { register, login };
+const getCurrentUser = async (req, res) => {
+  const user = await UserModel.findOne({ _id: req.userData.userId });
+  res.status(StatusCodes.OK).json({ name: user.name, id: user._id });
+};
+
+module.exports = { register, login, getCurrentUser };
