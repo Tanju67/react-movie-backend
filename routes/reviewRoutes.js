@@ -4,11 +4,14 @@ const {
   createReview,
   getAllReviews,
   deleteReview,
+  getFilmReviews,
 } = require("../controllers/review-controllers");
 
 const checkAuth = require("../middleware/auth");
 
 router.get("/", getAllReviews);
+
+router.get("/film/:id", getFilmReviews);
 
 router.use(checkAuth);
 

@@ -12,7 +12,9 @@ const createReview = async (req, res) => {
 
 const getAllReviews = async (req, res) => {
   const total = await ReviewModel.find().populate("createdBy", "name");
-  let reviews = ReviewModel.find().populate("createdBy", "name");
+  let reviews = ReviewModel.find()
+    .populate("createdBy", "name")
+    .sort("-createdAt");
 
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
@@ -21,6 +23,23 @@ const getAllReviews = async (req, res) => {
   reviews = reviews.skip(skip).limit(limit);
   const result = await reviews;
 
+  res.status(StatusCodes.OK).json({ result, total: total.length });
+};
+
+const getFilmReviews = async (req, res) => {
+  const imdbId = req.params.id;
+
+  const total = await ReviewModel.find({ imdbID: imdbId });
+  let reviews = ReviewModel.find({ imdbID: imdbId })
+    .populate("createdBy", "name")
+    .sort("-createdAt");
+
+  const page = Number(req.query.page);
+  const limit = Number(req.query.limit) * page;
+
+  reviews = reviews.limit(limit);
+  const result = await reviews;
+  console.log("hi");
   res.status(StatusCodes.OK).json({ result, total: total.length });
 };
 
@@ -39,4 +58,4 @@ const deleteReview = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Review deleted" });
 };
 
-module.exports = { createReview, getAllReviews, deleteReview };
+module.exports = { createReview, getAllReviews, deleteReview, getFilmReviews };
